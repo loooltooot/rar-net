@@ -25,7 +25,7 @@ body > footer {
   --bg-color: #ffffff;
   --primary-color: #7d19cf;
   --grey-color: #e4e4e4;
-  --grey-shade-color: #909090;
+  --grey-shade-color: #c0c0c0;
   --font-color: #000000;
   --font-light-color: #4d4d4d;
 }
@@ -99,6 +99,24 @@ ul {
 .search-bar {
   justify-content: space-between;
   align-items: center;
+}
+.search-bar .actions {
+  column-gap: 15px;
+}
+.search-bar #profile-container {
+  column-gap: 5px;
+  align-items: center;
+}
+.search-bar #profile-container #logout {
+  filter: invert(0.5);
+  width: 16px;
+  height: 16px;
+}
+.search-bar #profile-container #logout:hover {
+  filter: invert(0);
+}
+.search-bar #profile-container .username {
+  font-weight: 700;
 }
 
 /*# sourceMappingURL=global.css.map */
