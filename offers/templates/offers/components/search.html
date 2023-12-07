@@ -1,0 +1,26 @@
+<section class="fancy-borders search-bar flex">
+    {% if user.is_authenticated %}
+    <div>
+        <span>{{user.username}}</span>
+    </div>
+    {% endif %}
+    <div>
+        <form action="">
+            {% csrf_token %}
+            <input type="text" name="q">
+            <select name="sort_type">
+                <option value="same_city">В моем городе</option>
+                <option value="same_country">В моей стране</option>
+                <option value="everywhere" selected>Везде</option>
+            </select>
+            <input type="submit" value="поиск">
+        </form>
+    </div>
+    {% if user.is_authenticated %}
+    <div>
+        <ul>
+            <li><a href="">Заявки</a></li>
+        </ul>
+    </div>
+    {% endif %}
+</section>

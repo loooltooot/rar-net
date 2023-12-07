@@ -1,0 +1,30 @@
+{% extends "offers/base.html" %}
+
+{% block body %}
+
+{% block header %}
+<header>
+    <nav class="flex">
+        <ul class="nav-links">
+            <li><a href="">Главная</a></li>
+            <li><a href="">Профиль</a></li>
+        </ul>
+    </nav>
+    <h1>rar-net</h1>
+</header>
+{% endblock header %}
+
+<main>
+    {% block content %}{% endblock content %}
+</main>
+
+{% block footer %}
+<footer>
+    <ul class="nav-links">
+        <li><a href="https://loooltooot.github.io" target="_blank">Emir Zakrewski</a></li>
+        <li><a href="https://t.me/loooltooot" target="_blank">Телеграм</a></li>
+    </ul>
+</footer>
+{% endblock footer %}
+
+{% endblock body %}

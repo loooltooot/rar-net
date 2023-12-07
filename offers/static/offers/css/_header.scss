@@ -1,0 +1,19 @@
+body>header {
+
+    nav,
+    h1 {
+        padding-inline: var(--side-padding);
+    }
+
+    nav {
+        background-color: var(--grey-color);
+        justify-content: space-between;
+        padding-block: 5px;
+    }
+
+    h1 {
+        font-size: var(--x-font-size);
+        margin: 10px 0 30px;
+        color: var(--primary-color);
+    }
+}
