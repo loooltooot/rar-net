@@ -6,6 +6,7 @@
             <img id="logout" src="{% static "offers/img/logout.png" %}" alt="выйти" title="выйти">
         </a>
         <span class="username">{{user.username}}</span>
+        <img class="flag" title="{{user.country.name}}" src="{% static "locations/flags/"|add:user.country.flag %}" alt="">
     </div>
     {% endif %}
     <div class="forms-container">

@@ -150,6 +150,10 @@ form .errorlist li {
 .search-bar #login-form {
   display: none;
 }
+.search-bar .flag {
+  width: 16px;
+  height: 16px;
+}
 .search-bar.center {
   justify-content: center;
 }
