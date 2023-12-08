@@ -1,6 +1,8 @@
 #register-section {
   background-color: var(--grey-color);
   padding: 50px 100px;
+  max-width: 500px;
+  margin-inline: auto;
 }
 #register-section #inputs {
   flex-direction: column;
@@ -15,6 +17,35 @@
 }
 #register-section fieldset label {
   font-weight: 400;
+}
+#register-section #id_country {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 200px;
+  column-gap: 5px;
+  row-gap: 5px;
+  margin-top: 5px;
+}
+#register-section #id_country input {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+}
+#register-section #id_country input[name=country]:checked + label .flag {
+  background-color: var(--grey-dark-color);
+}
+#register-section #id_country .flag {
+  width: 25px;
+  height: 25px;
+  background-color: var(--grey-shade-color);
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#register-section #id_country .flag:hover {
+  background-color: var(--grey-dark-color);
 }
 
 /*# sourceMappingURL=register.css.map */

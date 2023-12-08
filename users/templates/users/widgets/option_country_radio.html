@@ -1,0 +1,5 @@
+{% load static %}
+{% include "django/forms/widgets/input.html" %}
+<label{% if widget.attrs.id %} for="{{ widget.attrs.id }}"{% endif %}>
+    <img class="flag" title="{{widget.label}}" src="{% static "locations/flags/"|add:widget.flag %}" alt="">
+</label>

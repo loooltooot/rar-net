@@ -2,6 +2,7 @@
 @use 'footer';
 
 :root {
+    --s-font-size: .9em;
     --base-font-size: 12px;
     --x-font-size: 6em;
 
@@ -11,8 +12,10 @@
     --primary-color: #7d19cf;
     --grey-color: #e4e4e4;
     --grey-shade-color: #c0c0c0;
+    --grey-dark-color: #979797;
     --font-color: #000000;
     --font-light-color: #4d4d4d;
+    --error-color: #d13434;
 }
 
 body {
@@ -77,6 +80,27 @@ ul {
     margin: 0;
     list-style: none;
     display: flex;
+}
+
+form {
+    input:not([type='radio'], [type='submit']) {
+        min-width: 250px;
+    }
+
+    .helptext,
+    .errorlist {
+        margin-bottom: 5px;
+    }
+
+    .helptext,
+    .helptext ul li {
+        font-size: var(--s-font-size);
+        color: var(--font-light-color);
+    }
+
+    .errorlist li {
+        color: var(--error-color);
+    }
 }
 
 // classes

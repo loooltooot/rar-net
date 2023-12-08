@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from .models import User
+from .widgets import CountryRadio
 
 class LoginForm(forms.Form):
     username = forms.CharField()
@@ -15,5 +16,5 @@ class RegisterForm(UserCreationForm):
             'email': forms.TextInput(attrs={'required': ''}),
             'last_name': forms.TextInput(attrs={'required': ''}),
             'first_name': forms.TextInput(attrs={'required': ''}),
-            'country': forms.RadioSelect(attrs={'required': ''}),
+            'country': CountryRadio(attrs={'required': ''}),
         }
