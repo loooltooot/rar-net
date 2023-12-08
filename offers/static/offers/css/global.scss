@@ -45,6 +45,7 @@ a {
 
 .nav-links {
     column-gap: 20px;
+    align-items: center;
 
     li {
         position: relative;
@@ -87,6 +88,10 @@ ul {
     padding: 5px 10px;
 }
 
+.error-message {
+    color: var(--font-light-color);
+}
+
 .search-bar {
     justify-content: space-between;
     align-items: center;
@@ -112,6 +117,20 @@ ul {
         .username {
             font-weight: 700;
         }
+    }
+
+    .forms-container {
+        display: flex;
+        column-gap: 10px;
+        align-items: center;
+    }
+
+    #login-form {
+        display: none;
+    }
+
+    &.center {
+        justify-content: center;
     }
 
 }

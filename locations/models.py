@@ -13,7 +13,7 @@ class Country(models.Model):
     name = models.CharField('название', max_length=50)
 
     def __str__(self):
-        return f'{self.code} {self.name}' 
+        return f'{self.name}' 
 
 class City(models.Model):
     class Meta:
@@ -25,4 +25,4 @@ class City(models.Model):
     name = models.CharField('название', max_length=50)
 
     def __str__(self):
-        return f'{self.name} {self.country}' 
+        return f'{self.name}' 

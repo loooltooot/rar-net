@@ -1,0 +1,22 @@
+{% extends "offers/base_site.html" %}
+{% load static %}
+
+{% block page_specific_styles %}
+<link rel="stylesheet" href="{% static "users/css/register.css" %}">
+{% endblock page_specific_styles %}
+
+{% block content %}
+<section id="register-section">
+    <form method="post">
+        <div id="inputs" class="flex">
+            {% csrf_token %}
+            {{form.as_div}}
+        </div>
+        <input type="submit" value="Зарегистрироваться">
+    </form>
+</section>
+{% endblock content %}
+
+{% block page_specific_scripts %}
+<script src="{% static "users/js/register.js" %}"></script>
+{% endblock page_specific_scripts %}

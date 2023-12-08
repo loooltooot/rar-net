@@ -1,5 +1,10 @@
 {% extends "offers/base_site.html" %}
+{% load static %}
 
 {% block content %}
 {% include "offers/components/search.html" %}
 {% endblock content %}
+
+{% block page_specific_scripts %}
+<script src="{% static "offers/js/searchBar.js" %}"></script>
+{% endblock page_specific_scripts %}

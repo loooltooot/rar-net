@@ -1,0 +1,22 @@
+#register-section {
+    background-color: var(--grey-color);
+    padding: 50px 100px;
+
+    #inputs {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    input[type='submit'] {
+        margin-top: 20px;
+    }
+
+    label,
+    legend {
+        font-weight: 700;
+    }
+
+    fieldset label {
+        font-weight: 400;
+    }
+}

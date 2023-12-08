@@ -1,15 +1,30 @@
 {% load static %}
-<section class="fancy-borders search-bar flex">
+<section class="fancy-borders search-bar flex{% if not user.is_authenticated %} center{% endif %}">
     {% if user.is_authenticated %}
     <div id="profile-container" class="flex">
-        <a href="/user/logout/">
+        <a href="{% url "users:logout" %}">
             <img id="logout" src="{% static "offers/img/logout.png" %}" alt="выйти" title="выйти">
         </a>
         <span class="username">{{user.username}}</span>
     </div>
     {% endif %}
-    <div>
-        <form action="">
+    <div class="forms-container">
+        {% if error %}
+            <span class="error-message">{{error}}</span>
+        {% endif %}
+        {% if not user.is_authenticated %}
+        <ul class="nav-links">
+            <li><a id="login-button" href="#">Вход</a></li>
+            <li><a href="{% url "users:register" %}">Регистрация</a></li>
+        </ul>
+        {% endif %}
+        <form id="login-form" action="{% url "users:login" %}" method="post">
+            {% csrf_token %}
+            <input placeholder="имя" type="text" name="username" required>
+            <input placeholder="пароль" type="password" name="password" required>
+            <input type="submit" value="войти">
+        </form>
+        <form id="search-form" action="search" method="get">
             {% csrf_token %}
             <input type="text" name="q" required>
             {% if user.is_authenticated %}

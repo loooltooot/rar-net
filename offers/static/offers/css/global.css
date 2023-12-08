@@ -59,6 +59,7 @@ a:hover {
 
 .nav-links {
   column-gap: 20px;
+  align-items: center;
 }
 .nav-links li {
   position: relative;
@@ -96,6 +97,10 @@ ul {
   padding: 5px 10px;
 }
 
+.error-message {
+  color: var(--font-light-color);
+}
+
 .search-bar {
   justify-content: space-between;
   align-items: center;
@@ -117,6 +122,17 @@ ul {
 }
 .search-bar #profile-container .username {
   font-weight: 700;
+}
+.search-bar .forms-container {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+.search-bar #login-form {
+  display: none;
+}
+.search-bar.center {
+  justify-content: center;
 }
 
 /*# sourceMappingURL=global.css.map */

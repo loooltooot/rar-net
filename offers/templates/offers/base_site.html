@@ -1,4 +1,5 @@
 {% extends "offers/base.html" %}
+{% load static %}
 
 {% block body %}
 
@@ -6,7 +7,7 @@
 <header>
     <nav class="flex">
         <ul class="nav-links">
-            <li><a href="">Главная</a></li>
+            <li><a href="{% url "offers:index" %}">Главная</a></li>
             <li><a href="">Профиль</a></li>
         </ul>
     </nav>
@@ -26,5 +27,8 @@
     </ul>
 </footer>
 {% endblock footer %}
+
+<script src="{% static "offers/js/jquery.min.js" %}"></script>
+{% block page_specific_scripts %}{% endblock page_specific_scripts %}
 
 {% endblock body %}
