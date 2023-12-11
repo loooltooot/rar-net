@@ -25,6 +25,8 @@ body > footer {
   --side-padding: min(5vw, 30px);
   --bg-color: #ffffff;
   --primary-color: #7d19cf;
+  --primary-shade-color: #6716aa;
+  --primary-light-color: #a033fa;
   --grey-color: #e4e4e4;
   --grey-shade-color: #c0c0c0;
   --grey-dark-color: #979797;
@@ -110,9 +112,9 @@ form .errorlist li {
 }
 
 .fancy-borders {
+  background: linear-gradient(180deg, var(--bg-color) 0%, var(--grey-color) 39.58%);
   border-radius: 5px;
   border: 1px solid var(--grey-shade-color);
-  background: linear-gradient(180deg, var(--bg-color) 0%, var(--grey-color) 39.58%);
   padding: 5px 10px;
 }
 
@@ -159,6 +161,61 @@ form .errorlist li {
 }
 .search-bar.center {
   justify-content: center;
+}
+
+#offers-list {
+  margin-top: 20px;
+}
+#offers-list ul {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 20px;
+}
+#offers-list .offer-card {
+  display: grid;
+  max-width: 200px;
+  grid-template-areas: "img img" "title title" "description description" "meta meta" "button button";
+}
+#offers-list .offer-card h3 {
+  margin: 5px 0 10px;
+  grid-area: title;
+}
+#offers-list .offer-card p {
+  margin: 0 0 10px;
+  grid-area: description;
+}
+#offers-list .offer-card div.meta {
+  grid-area: meta;
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+#offers-list .offer-card div.meta .author-container {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+#offers-list .offer-card div.meta .author-container span.author {
+  font-weight: 700;
+}
+#offers-list .offer-card div.meta .author-container img.flag {
+  width: 16px;
+  height: 16px;
+}
+#offers-list .offer-card a.fancy-borders {
+  background: linear-gradient(180deg, var(--primary-light-color) 0%, var(--primary-color) 39.58%);
+  color: var(--bg-color);
+  font-weight: 700;
+  grid-area: button;
+  width: fit-content;
+  margin-top: 10px;
+}
+#offers-list .offer-card a.fancy-borders:hover {
+  background: var(--primary-shade-color);
+}
+#offers-list .offer-card img {
+  width: 200px;
+  grid-area: img;
 }
 
 /*# sourceMappingURL=global.css.map */

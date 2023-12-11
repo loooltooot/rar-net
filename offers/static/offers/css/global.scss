@@ -10,6 +10,8 @@
 
     --bg-color: #ffffff;
     --primary-color: #7d19cf;
+    --primary-shade-color: #6716aa;
+    --primary-light-color: #a033fa;
     --grey-color: #e4e4e4;
     --grey-shade-color: #c0c0c0;
     --grey-dark-color: #979797;
@@ -105,10 +107,14 @@ form {
 
 // classes
 
+@mixin fancy-bg($topColor, $bottomColor) {
+    background: linear-gradient(180deg, $topColor 0%, $bottomColor 39.58%);
+}
+
 .fancy-borders {
+    @include fancy-bg(var(--bg-color), var(--grey-color));
     border-radius: 5px;
     border: 1px solid var(--grey-shade-color);
-    background: linear-gradient(180deg, var(--bg-color) 0%, var(--grey-color) 39.58%);
     padding: 5px 10px;
 }
 
@@ -165,5 +171,75 @@ form {
     &.center {
         justify-content: center;
     }
+}
 
+#offers-list {
+    margin-top: 20px;
+
+    ul {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        row-gap: 20px;
+    }
+
+    .offer-card {
+        display: grid;
+        max-width: 200px;
+        grid-template-areas:
+            'img img'
+            'title title'
+            'description description'
+            'meta meta'
+            'button button';
+
+        h3 {
+            margin: 5px 0 10px;
+            grid-area: title;
+        }
+
+        p {
+            margin: 0 0 10px;
+            grid-area: description;
+        }
+
+        div.meta {
+            grid-area: meta;
+            display: flex;
+            column-gap: 10px;
+            align-items: center;
+
+            .author-container {
+                display: flex;
+                align-items: center;
+                column-gap: 5px;
+
+                span.author {
+                    font-weight: 700
+                }
+
+                img.flag {
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+        }
+
+        a.fancy-borders {
+            @include fancy-bg(var(--primary-light-color), var(--primary-color));
+            color: var(--bg-color);
+            font-weight: 700;
+            grid-area: button;
+            width: fit-content;
+            margin-top: 10px;
+
+            &:hover {
+                background: var(--primary-shade-color);
+            }
+        }
+
+        img {
+            width: 200px;
+            grid-area: img;
+        }
+    }
 }

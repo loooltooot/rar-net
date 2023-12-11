@@ -1,0 +1,27 @@
+{% load static %}
+<section id="offers-list">
+    <ul>
+        {% for offer in offers %}
+            <li>
+                <div class="offer-card fancy-borders">
+                    <h3>{{offer.title}}</h3>
+                    <p>{{offer.description}}</p>
+                    <div class="meta">
+                        <span class="category {{offer.category|yesno:'buy,sell'}}">{{offer.get_category_display}}</span>
+                        <div class="author-container">
+                            <span class="author">{{offer.author.username}}</span>
+                            {% if offer.author.country is not None %}
+                                <img class="flag" title="{{offer.author.country.name}}" src="{% static "locations/flags/"|add:offer.author.country.flag %}" alt="">
+                                <span class="city">{{offer.author.city.name}}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if user.is_authenticated %}
+                        <a class="fancy-borders" href="">Откликнуться</a>
+                    {% endif %}
+                    <img src="{{offer.photo_set.first.img.url}}">
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
