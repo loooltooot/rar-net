@@ -11,9 +11,9 @@ body>header {
         padding-block: 5px;
     }
 
-    h1 {
-        font-size: var(--x-font-size);
+    #logo {
         margin: 10px 0 30px;
-        color: var(--primary-color);
+        max-width: 300px;
+        padding-inline: var(--side-padding);
     }
 }

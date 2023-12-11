@@ -7,10 +7,10 @@ body > header nav {
   justify-content: space-between;
   padding-block: 5px;
 }
-body > header h1 {
-  font-size: var(--x-font-size);
+body > header #logo {
   margin: 10px 0 30px;
-  color: var(--primary-color);
+  max-width: 300px;
+  padding-inline: var(--side-padding);
 }
 
 body > footer {
@@ -126,6 +126,9 @@ form .errorlist li {
 }
 .search-bar .actions {
   column-gap: 15px;
+}
+.search-bar input[name=username] {
+  min-width: 60px;
 }
 .search-bar #profile-container {
   column-gap: 5px;

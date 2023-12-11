@@ -124,6 +124,10 @@ form {
         column-gap: 15px;
     }
 
+    input[name='username'] {
+        min-width: 60px;
+    }
+
     #profile-container {
         column-gap: 5px;
         align-items: center;
