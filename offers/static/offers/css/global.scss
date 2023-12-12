@@ -173,6 +173,20 @@ form {
     }
 }
 
+.fancy-borders.focus-button {
+    @include fancy-bg(var(--primary-light-color), var(--primary-color));
+    cursor: pointer;
+    color: var(--bg-color);
+    font-weight: 700;
+    grid-area: button;
+    width: fit-content;
+    margin-top: 10px;
+
+    &:hover {
+        background: var(--primary-shade-color);
+    }
+}
+
 #offers-list {
     margin-top: 20px;
 
@@ -180,11 +194,13 @@ form {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         row-gap: 20px;
+        column-gap: 20px;
     }
 
     .offer-card {
         display: grid;
-        max-width: 200px;
+        width: 100%;
+        box-sizing: border-box;
         grid-template-areas:
             'img img'
             'title title'
@@ -224,21 +240,8 @@ form {
             }
         }
 
-        a.fancy-borders {
-            @include fancy-bg(var(--primary-light-color), var(--primary-color));
-            color: var(--bg-color);
-            font-weight: 700;
-            grid-area: button;
-            width: fit-content;
-            margin-top: 10px;
-
-            &:hover {
-                background: var(--primary-shade-color);
-            }
-        }
-
         img {
-            width: 200px;
+            width: 100%;
             grid-area: img;
         }
     }

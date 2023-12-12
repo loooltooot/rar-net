@@ -163,6 +163,19 @@ form .errorlist li {
   justify-content: center;
 }
 
+.fancy-borders.focus-button {
+  background: linear-gradient(180deg, var(--primary-light-color) 0%, var(--primary-color) 39.58%);
+  cursor: pointer;
+  color: var(--bg-color);
+  font-weight: 700;
+  grid-area: button;
+  width: fit-content;
+  margin-top: 10px;
+}
+.fancy-borders.focus-button:hover {
+  background: var(--primary-shade-color);
+}
+
 #offers-list {
   margin-top: 20px;
 }
@@ -170,10 +183,12 @@ form .errorlist li {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   row-gap: 20px;
+  column-gap: 20px;
 }
 #offers-list .offer-card {
   display: grid;
-  max-width: 200px;
+  width: 100%;
+  box-sizing: border-box;
   grid-template-areas: "img img" "title title" "description description" "meta meta" "button button";
 }
 #offers-list .offer-card h3 {
@@ -202,19 +217,8 @@ form .errorlist li {
   width: 16px;
   height: 16px;
 }
-#offers-list .offer-card a.fancy-borders {
-  background: linear-gradient(180deg, var(--primary-light-color) 0%, var(--primary-color) 39.58%);
-  color: var(--bg-color);
-  font-weight: 700;
-  grid-area: button;
-  width: fit-content;
-  margin-top: 10px;
-}
-#offers-list .offer-card a.fancy-borders:hover {
-  background: var(--primary-shade-color);
-}
 #offers-list .offer-card img {
-  width: 200px;
+  width: 100%;
   grid-area: img;
 }
 
