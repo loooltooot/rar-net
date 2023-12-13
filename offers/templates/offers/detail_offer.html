@@ -1,0 +1,73 @@
+{% extends "offers/base_site.html" %}
+{% load static %}
+
+{% block page_specific_styles %}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+<link rel="stylesheet" href="{% static "offers/css/pages/detailOffer.css" %}">
+{% endblock page_specific_styles %}
+
+{% block content %}
+{% include "offers/components/search.html" %}
+<section id="detail-offer" class="flex fancy-borders">
+    <div class="content">
+        <h2>{{offer.title}}</h2>
+        <div class="author-container">
+            <span class="author">{{offer.author.username}}</span>
+            {% if offer.author.country is not None %}
+            <img class="flag" title="{{offer.author.country.name}}" src="{% static "locations/flags/"|add:offer.author.country.flag %}" alt="">
+            <span class="city">{{offer.author.city.name}}</span>
+            {% endif %}
+        </div>
+        <span class="category {{offer.category|yesno:'buy,sell'}}">{{offer.get_category_display}}</span>
+        <p>{{offer.description}}</p>
+        <div class="action flex">
+            {% if user.is_authenticated and user.username != offer.author.username %}
+                <a class="fancy-borders focus-button" href="">Откликнуться</a>
+            {% endif %}
+            {% if offer.responders.count > 0 %}
+                <span class="asked">Уже откликнулось {{offer.responders.count}} человек</span>
+            {% else %}
+                <span class="asked">Станьте первым, кто откликнется</span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="images swiper">
+        <div class="swiper-wrapper">
+            {% for image in offer.photo_set.all %}
+                <div class="swiper-slide">
+                    <img src="{{image.img.url}}">
+                </div>
+            {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block page_specific_scripts %}
+<script src="{% static "offers/js/searchBar.js" %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    const swiper = new Swiper('.swiper', {
+        direction: 'horizontal',
+        loop: true,
+
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    })
+</script>
+{% endblock page_specific_scripts %}

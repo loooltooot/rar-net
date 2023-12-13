@@ -181,6 +181,7 @@ form {
     grid-area: button;
     width: fit-content;
     margin-top: 10px;
+    display: block;
 
     &:hover {
         background: var(--primary-shade-color);
@@ -208,9 +209,12 @@ form {
             'meta meta'
             'button button';
 
-        h3 {
-            margin: 5px 0 10px;
+        .title {
             grid-area: title;
+
+            h3 {
+                margin: 5px 0 10px;
+            }
         }
 
         p {

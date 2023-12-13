@@ -171,6 +171,7 @@ form .errorlist li {
   grid-area: button;
   width: fit-content;
   margin-top: 10px;
+  display: block;
 }
 .fancy-borders.focus-button:hover {
   background: var(--primary-shade-color);
@@ -191,9 +192,11 @@ form .errorlist li {
   box-sizing: border-box;
   grid-template-areas: "img img" "title title" "description description" "meta meta" "button button";
 }
-#offers-list .offer-card h3 {
-  margin: 5px 0 10px;
+#offers-list .offer-card .title {
   grid-area: title;
+}
+#offers-list .offer-card .title h3 {
+  margin: 5px 0 10px;
 }
 #offers-list .offer-card p {
   margin: 0 0 10px;

@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import OfferForm
-from .models import Photo
+from .models import Photo, Offer
 
 # Create your views here.
 
@@ -30,3 +30,12 @@ class CreateOffer(generic.CreateView, LoginRequiredMixin):
             Photo.objects.create(img=img, offer=self.object)
 
         return HttpResponseRedirect(self.get_success_url())
+
+class DetailOffer(generic.DetailView):
+    model = Offer
+    template_name = 'offers/detail_offer.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(DetailOffer, self).get_context_data(*args, **kwargs)
+        context['title'] = context['offer'].title
+        return context

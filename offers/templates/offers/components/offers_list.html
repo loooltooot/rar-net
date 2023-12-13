@@ -1,11 +1,13 @@
-{% load static %}
+{% load static description %}
 <section id="offers-list">
     <ul>
         {% for offer in offers %}
             <li>
                 <div class="offer-card fancy-borders">
-                    <h3>{{offer.title}}</h3>
-                    <p>{{offer.description}}</p>
+                    <a class="title" href="{% url "offers:detail_offer" offer.id %}">
+                        <h3>{{offer.title}}</h3>
+                    </a>
+                    <p>{% description offer.description %}</p>
                     <div class="meta">
                         <span class="category {{offer.category|yesno:'buy,sell'}}">{{offer.get_category_display}}</span>
                         <div class="author-container">
