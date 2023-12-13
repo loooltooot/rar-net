@@ -1,5 +1,5 @@
 {% extends "offers/base_site.html" %}
-{% load static %}
+{% load static ru_plural %}
 
 {% block page_specific_styles %}
 <link
@@ -28,7 +28,7 @@
                 <a class="fancy-borders focus-button" href="{% url "offers:respond_offer" offer.id %}">Откликнуться</a>
             {% endif %}
             {% if offer.responders.count > 0 %}
-                <span class="asked">Уже откликнулось: {{offer.responders.count}} человек</span>
+                <span class="asked">Уже откликнулось: {{offer.responders.count|ru_plural:'человек,человека'}}</span>
             {% else %}
                 <span class="asked">Станьте первым, кто откликнется</span>
             {% endif %}
