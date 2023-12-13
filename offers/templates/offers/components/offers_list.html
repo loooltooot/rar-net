@@ -19,7 +19,11 @@
                         </div>
                     </div>
                     {% if user.is_authenticated and user.username != offer.author.username %}
-                        <a class="fancy-borders focus-button" href="">Откликнуться</a>
+                        {% if user in offer.responders.all %}
+                            <a class="fancy-borders focus-button disabled">Вы уже откликнулись</a>
+                        {% else %}
+                            <a class="fancy-borders focus-button" href="{% url "offers:respond_offer" offer.id %}">Откликнуться</a>
+                        {% endif %}
                     {% endif %}
                     <img src="{{offer.photo_set.first.img.url}}">
                 </div>

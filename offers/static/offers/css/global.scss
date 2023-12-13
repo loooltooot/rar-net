@@ -186,6 +186,10 @@ form {
     &:hover {
         background: var(--primary-shade-color);
     }
+
+    &.disabled {
+        background: var(--primary-shade-color);
+    }
 }
 
 #offers-list {

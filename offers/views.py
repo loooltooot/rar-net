@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from locations.models import City
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.db.models import F
 
 from .forms import OfferForm
 from .models import Photo, Offer
@@ -39,3 +41,12 @@ class DetailOffer(generic.DetailView):
         context = super(DetailOffer, self).get_context_data(*args, **kwargs)
         context['title'] = context['offer'].title
         return context
+
+@login_required(redirect_field_name='')
+def respond_to_offer(request, pk):
+    if request.method == 'GET':
+        offer = get_object_or_404(Offer, pk=pk)
+        offer.responders.add(request.user)
+        offer.save()
+
+        return redirect('offers:index')

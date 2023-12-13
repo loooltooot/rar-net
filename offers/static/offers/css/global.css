@@ -176,6 +176,9 @@ form .errorlist li {
 .fancy-borders.focus-button:hover {
   background: var(--primary-shade-color);
 }
+.fancy-borders.focus-button.disabled {
+  background: var(--primary-shade-color);
+}
 
 #offers-list {
   margin-top: 20px;

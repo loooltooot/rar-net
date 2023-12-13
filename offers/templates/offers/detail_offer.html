@@ -24,11 +24,11 @@
         <span class="category {{offer.category|yesno:'buy,sell'}}">{{offer.get_category_display}}</span>
         <p>{{offer.description}}</p>
         <div class="action flex">
-            {% if user.is_authenticated and user.username != offer.author.username %}
-                <a class="fancy-borders focus-button" href="">Откликнуться</a>
+            {% if user.is_authenticated and user.username != offer.author.username and user not in offer.responders.all %}
+                <a class="fancy-borders focus-button" href="{% url "offers:respond_offer" offer.id %}">Откликнуться</a>
             {% endif %}
             {% if offer.responders.count > 0 %}
-                <span class="asked">Уже откликнулось {{offer.responders.count}} человек</span>
+                <span class="asked">Уже откликнулось: {{offer.responders.count}} человек</span>
             {% else %}
                 <span class="asked">Станьте первым, кто откликнется</span>
             {% endif %}
