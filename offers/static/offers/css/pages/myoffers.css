@@ -1,0 +1,46 @@
+#myoffers {
+  margin-top: 20px;
+}
+
+.myoffers-list {
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+h3 {
+  margin: 0;
+}
+
+h4 {
+  margin: 5px 0 5px;
+}
+
+.offer-info {
+  align-items: center;
+  column-gap: 10px;
+  margin-bottom: 20px;
+}
+
+.responders-list {
+  flex-direction: column;
+  row-gap: 5px;
+}
+.responders-list li {
+  align-items: center;
+  column-gap: 20px;
+}
+.responders-list li .focus-button {
+  margin-top: 0;
+}
+
+.responder-info {
+  align-items: center;
+  column-gap: 5px;
+}
+.responder-info img {
+  width: 16px;
+  height: 16px;
+}
+
+/*# sourceMappingURL=myoffers.css.map */

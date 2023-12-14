@@ -33,6 +33,8 @@ body > footer {
   --font-color: #000000;
   --font-light-color: #4d4d4d;
   --error-color: #d13434;
+  --selected-color: #60e23f;
+  --selected-light-color: #86fc68;
 }
 
 body {
@@ -178,6 +180,14 @@ form .errorlist li {
 }
 .fancy-borders.focus-button.disabled {
   background: var(--primary-shade-color);
+}
+
+.fancy-borders.selected-responder {
+  background: linear-gradient(180deg, var(--selected-light-color) 0%, var(--selected-color) 39.58%);
+  width: fit-content;
+  display: flex;
+  font-weight: 700;
+  color: var(--font-color);
 }
 
 #offers-list {

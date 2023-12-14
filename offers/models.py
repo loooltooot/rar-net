@@ -1,6 +1,5 @@
 from django.db import models
 from django.conf import settings
-from django.utils import timezone
 
 # Create your models here.
 
@@ -26,6 +25,7 @@ class Offer(models.Model):
     status = models.CharField('статус', max_length=20, choices=statuses, default='active')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='author', verbose_name='владелец')
     responders = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name='откликнулись', related_name='responders', blank=True)
+    selected_responder = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, verbose_name='выбран', related_name='selected_responder', blank=True, null=True)
     pub_date = models.DateTimeField('дата публикации', auto_now_add=True)
 
     def __str__(self):
