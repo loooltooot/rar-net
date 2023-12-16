@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect, HttpResponseNotAllowed
+from django.http import HttpResponseRedirect, HttpResponseNotAllowed, HttpResponseForbidden
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
@@ -70,9 +70,12 @@ def set_selected_responder(request):
             offer = get_object_or_404(Offer, pk=offer_pk)
             responder = get_object_or_404(get_user_model(), pk=responder_pk)
 
-            offer.selected_responder = responder
-            offer.status = 'closed'
-            offer.save()
+            if offer.author == request.user:
+                offer.selected_responder = responder
+                offer.status = 'closed'
+                offer.save()
+            else:
+                return HttpResponseForbidden()
 
             return redirect('offers:myoffers')
     else:
@@ -86,9 +89,12 @@ def reset_selected_responder(request):
 
             offer = get_object_or_404(Offer, pk=offer_pk)
 
-            offer.selected_responder = None
-            offer.status = 'active'
-            offer.save()
+            if offer.author == request.user:
+                offer.selected_responder = None
+                offer.status = 'active'
+                offer.save()
+            else:
+                return HttpResponseForbidden()
 
             return redirect('offers:myoffers')
     else:
