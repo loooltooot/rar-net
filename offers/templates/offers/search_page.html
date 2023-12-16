@@ -1,0 +1,8 @@
+{% extends "offers/index.html" %}
+{% load offers_list %}
+
+{% block content %}
+{% include "offers/components/search.html" %}
+<h2>Результаты поиска:</h2>
+{% offers_list %}
+{% endblock content %}

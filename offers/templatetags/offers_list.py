@@ -6,4 +6,5 @@ register = template.Library()
 @register.inclusion_tag('offers/components/offers_list.html', takes_context=True)
 def offers_list(context):
     user = context['user']
-    return {'offers': Offer.objects.filter(status='active'), 'user': user}
+    offers = context['offers']
+    return {'offers': offers, 'user': user}

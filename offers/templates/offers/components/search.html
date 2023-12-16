@@ -27,14 +27,13 @@
             <input placeholder="пароль" type="password" name="password" required>
             <input type="submit" value="войти">
         </form>
-        <form id="search-form" action="search" method="get">
-            {% csrf_token %}
-            <input type="text" name="q" required>
+        <form id="search-form" action="{% url "offers:search" %}" method="get">
+            <input type="text" name="q" {% if q is not None %}value="{{q}}"{% endif %}>
             {% if user.is_authenticated %}
             <select name="sort_type">
-                <option value="same_city">В моем городе</option>
-                <option value="same_country">В моей стране</option>
-                <option value="everywhere" selected>Везде</option>
+                <option value="same_city" {% if sort_type == "same_city" %}selected{% endif %}>В моем городе</option>
+                <option value="same_country" {% if sort_type == "same_country" %}selected{% endif %}>В моей стране</option>
+                <option value="everywhere" {% if sort_type == "everywhere" or sort_type is None %}selected{% endif %}>Везде</option>
             </select>
             {% endif %}
             <input type="submit" value="поиск">

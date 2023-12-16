@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponseNotAllowed, HttpRespon
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from django.db.models import Q
 
 from .forms import OfferForm
 from .models import Photo, Offer
@@ -12,7 +13,7 @@ from .models import Photo, Offer
 # Create your views here.
 
 def index(request):
-    return render(request, 'offers/index.html')
+    return render(request, 'offers/index.html', context={'offers': Offer.objects.filter(status='active')})
 
 class CreateOffer(generic.CreateView, LoginRequiredMixin):
     template_name = 'offers/add_offer.html'
@@ -103,5 +104,23 @@ def reset_selected_responder(request):
 @login_required(redirect_field_name='')
 def list_user_requests(request):
     user_requests = request.user.responders.all()
-
     return render(request, 'offers/my_requests.html', context={'requests': user_requests})
+
+def search(request):
+    if request.GET is not None:
+        query = request.GET['q']
+        sort_type = request.GET['sort_type']
+
+        initial_queryset = Offer.objects.filter(status='active')
+        sorting_types = {
+            'everywhere': initial_queryset,
+            'same_country': initial_queryset.filter(author__country=request.user.country),
+            'same_city': initial_queryset.filter(author__city=request.user.city),
+        }
+
+        sorted_offers = sorting_types.get(sort_type)
+
+        if query is not None:
+            sorted_offers = sorted_offers.filter(Q(title__icontains=query) | Q(description__icontains=query))
+
+        return render(request, 'offers/search_page.html', context={'offers': sorted_offers, 'q': query, 'sort_type': sort_type})
