@@ -50,6 +50,11 @@
                             <img class="flag" title="{{offer.selected_responder.country.name}}" src="{% static "locations/flags/"|add:offer.selected_responder.country.flag %}" alt="">
                             <span>{{offer.selected_responder.city}}</span>
                         {% endif %}
+                        <form action="{% url "offers:reset_responder" %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="offer_pk" value="{{offer.id}}">
+                            <input type="submit" value="отменить" class="fancy-borders focus-button">
+                        </form>
                     </div>
                     {% endif %}
                 </div>

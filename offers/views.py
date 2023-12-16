@@ -77,3 +77,19 @@ def set_selected_responder(request):
             return redirect('offers:myoffers')
     else:
         return HttpResponseNotAllowed(['POST'])
+
+@login_required(redirect_field_name='')
+def reset_selected_responder(request):
+    if request.method == 'POST':
+        if request.POST is not None:
+            offer_pk = request.POST['offer_pk']
+
+            offer = get_object_or_404(Offer, pk=offer_pk)
+
+            offer.selected_responder = None
+            offer.status = 'active'
+            offer.save()
+
+            return redirect('offers:myoffers')
+    else:
+        return HttpResponseNotAllowed(['POST'])
