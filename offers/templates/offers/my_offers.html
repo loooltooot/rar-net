@@ -1,0 +1,70 @@
+{% extends "offers/base_site.html" %}
+{% load static %}
+
+{% block page_specific_styles %}
+<link rel="stylesheet" href="{% static "offers/css/pages/myoffers.css" %}">
+{% endblock page_specific_styles %}
+
+{% block content %}
+{% include "offers/components/search.html" %}
+<section id="myoffers">
+    <ul class="myoffers-list">
+        {% for offer in offer_list %}
+        <li>
+            <div class="fancy-borders">
+                <div class="offer-info flex">
+                    <a class="title" href="{% url "offers:detail_offer" offer.id %}">
+                        <h3>{{offer.title}}</h3>
+                    </a>
+                    <span>{{offer.get_category_display}}</span>
+                </div>
+                <div>
+                    {% if offer.selected_responder is None %}
+                    <h4>Откликнулись:</h4>
+                    <ul class="responders-list">
+                        {% for responder in offer.responders.all %}
+                        <li class="flex">
+                            <div class="responder-info flex">
+                                <span>{{responder.username}}</span>
+                                {% if responder.country is not None %}
+                                    <img class="flag" title="{{responder.country.name}}" src="{% static "locations/flags/"|add:responder.country.flag %}" alt="">
+                                    <span>{{responder.city}}</span>
+                                {% endif %}
+                            </div>
+                            <form action="{% url "offers:select_responder" %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="responder_pk" value="{{responder.id}}">
+                                <input type="hidden" name="offer_pk" value="{{offer.id}}">
+                                <input type="submit" value="выбрать" class="fancy-borders focus-button">
+                            </form>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <h4>Выбран:</h4>
+                    <div class="responder-info fancy-borders selected-responder">
+                        <span>{{offer.selected_responder.username}}</span>
+                        <span>{{offer.selected_responder.last_name}} {{offer.selected_responder.first_name}}</span>
+                        <span>{{offer.selected_responder.email}}</span>
+                        {% if offer.selected_responder.country is not None %}
+                            <img class="flag" title="{{offer.selected_responder.country.name}}" src="{% static "locations/flags/"|add:offer.selected_responder.country.flag %}" alt="">
+                            <span>{{offer.selected_responder.city}}</span>
+                        {% endif %}
+                        <form action="{% url "offers:reset_responder" %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="offer_pk" value="{{offer.id}}">
+                            <input type="submit" value="отменить" class="fancy-borders focus-button">
+                        </form>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock content %}
+
+{% block page_specific_scripts %}
+<script src="{% static "offers/js/searchBar.js" %}"></script>
+{% endblock page_specific_scripts %}

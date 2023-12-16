@@ -1,0 +1,21 @@
+#create-offer {
+  padding: 50px 100px;
+  max-width: 500px;
+  margin-inline: auto;
+}
+#create-offer #inputs {
+  flex-direction: column;
+  row-gap: 10px;
+}
+#create-offer input[type=submit] {
+  margin-top: 20px;
+}
+#create-offer label,
+#create-offer legend {
+  font-weight: 700;
+}
+#create-offer fieldset label {
+  font-weight: 400;
+}
+
+/*# sourceMappingURL=createOffer.css.map */

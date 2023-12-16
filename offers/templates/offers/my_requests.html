@@ -1,0 +1,51 @@
+{% extends "offers/base_site.html" %}
+{% load static %}
+
+{% block page_specific_styles %}
+<link rel="stylesheet" href="{% static "offers/css/pages/myoffers.css" %}">
+{% endblock page_specific_styles %}
+
+{% block content %}
+{% include "offers/components/search.html" %}
+<section id="myrequests">
+    <ul class="myoffers-list">
+        {% for offer in requests %}
+        <li>
+            <div class="fancy-borders">
+                <div class="offer-info flex">
+                    <a class="title" href="{% url "offers:detail_offer" offer.id %}">
+                        <h3>{{offer.title}}</h3>
+                    </a>
+                    <span>{{offer.get_category_display}}</span>
+                    <div class="responder-info flex">
+                        <span>{{offer.author.username}}</span>
+                        {% if offer.author.country is not None %}
+                            <img class="flag" title="{{offer.author.country.name}}" src="{% static "locations/flags/"|add:offer.author.country.flag %}" alt="">
+                            <span>{{offer.author.city}}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if offer.selected_responder == user %}
+                    <div class="responder-info fancy-borders selected-responder">
+                        вас выбрали
+                    </div>
+                    <div class="author-info">
+                        <h4>Данные для связи:</h4>
+                        <span>{{offer.author.last_name}} {{offer.author.first_name}}</span>
+                        <span>{{offer.author.email}}</span>
+                    </div>
+                {% else %}
+                    <div class="responder-info fancy-borders not-selected-responder">
+                        вас еще не выбрали
+                    </div>
+                {% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock content %}
+
+{% block page_specific_scripts %}
+<script src="{% static "offers/js/searchBar.js" %}"></script>
+{% endblock page_specific_scripts %}

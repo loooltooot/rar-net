@@ -1,0 +1,36 @@
+{% extends "offers/base.html" %}
+{% load static %}
+
+{% block body %}
+
+{% block header %}
+<header>
+    <nav class="flex">
+        <ul class="nav-links">
+            <li><a href="{% url "offers:index" %}">Главная</a></li>
+            <li><a href="{% url "offers:list_requests" %}">Мои отклики</a></li>
+            <li><a href="{% url "offers:myoffers" %}">Мои заявки</a></li>
+            <li><a href="{% url "offers:add_offer" %}">Добавить заявку</a></li>
+        </ul>
+    </nav>
+    <img id="logo" src="{% static "offers/img/logo.png" %}" alt="rar-net">
+</header>
+{% endblock header %}
+
+<main>
+    {% block content %}{% endblock content %}
+</main>
+
+{% block footer %}
+<footer>
+    <ul class="nav-links">
+        <li><a href="https://loooltooot.github.io" target="_blank">Emir Zakrewski</a></li>
+        <li><a href="https://t.me/loooltooot" target="_blank">Телеграм</a></li>
+    </ul>
+</footer>
+{% endblock footer %}
+
+<script src="{% static "offers/js/jquery.min.js" %}"></script>
+{% block page_specific_scripts %}{% endblock page_specific_scripts %}
+
+{% endblock body %}

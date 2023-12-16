@@ -1,0 +1,51 @@
+{% load static %}
+<section class="fancy-borders search-bar flex{% if not user.is_authenticated %} center{% endif %}">
+    {% if user.is_authenticated %}
+    <div id="profile-container" class="flex">
+        <a href="{% url "users:logout" %}">
+            <img id="logout" src="{% static "offers/img/logout.png" %}" alt="выйти" title="выйти">
+        </a>
+        <span class="username">{{user.username}}</span>
+        {% if user.country is not None %}
+            <img class="flag" title="{{user.country.name}}" src="{% static "locations/flags/"|add:user.country.flag %}" alt="">
+        {% endif %}
+    </div>
+    {% endif %}
+    <div class="forms-container">
+        {% if error %}
+            <span class="error-message">{{error}}</span>
+        {% endif %}
+        {% if not user.is_authenticated %}
+        <ul class="nav-links">
+            <li><a id="login-button" href="#">Вход</a></li>
+            <li><a href="{% url "users:register" %}">Регистрация</a></li>
+        </ul>
+        {% endif %}
+        <form id="login-form" action="{% url "users:login" %}" method="post">
+            {% csrf_token %}
+            <input placeholder="имя" type="text" name="username" required>
+            <input placeholder="пароль" type="password" name="password" required>
+            <input type="submit" value="войти">
+        </form>
+        <form id="search-form" action="{% url "offers:search" %}" method="get">
+            <input type="text" name="q" {% if q is not None %}value="{{q}}"{% endif %}>
+            {% if user.is_authenticated %}
+            <select name="sort_type">
+                <option value="same_city" {% if sort_type == "same_city" %}selected{% endif %}>В моем городе</option>
+                <option value="same_country" {% if sort_type == "same_country" %}selected{% endif %}>В моей стране</option>
+                <option value="everywhere" {% if sort_type == "everywhere" or sort_type is None %}selected{% endif %}>Везде</option>
+            </select>
+            {% endif %}
+            <input type="submit" value="поиск">
+        </form>
+    </div>
+    {% if user.is_authenticated %}
+    <div>
+        <ul class="actions">
+            <li><a href="{% url "offers:list_requests" %}">Мои отклики</a></li>
+            <li><a href="{% url "offers:myoffers" %}">Мои заявки</a></li>
+            <li><a href="{% url "offers:add_offer" %}">Добавить заявку</a></li>
+        </ul>
+    </div>
+    {% endif %}
+</section>

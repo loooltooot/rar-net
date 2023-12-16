@@ -1,0 +1,57 @@
+:root {
+  --swiper-theme-color: var(--primary-color);
+}
+
+#detail-offer {
+  justify-content: space-between;
+  column-gap: 40px;
+  margin-top: 40px;
+  width: 800px;
+  padding: 20px 50px;
+  margin-inline: auto;
+}
+#detail-offer .content {
+  max-width: 360px;
+}
+#detail-offer .content h2 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+#detail-offer .content .author-container {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+#detail-offer .content .author-container span.author {
+  font-weight: 700;
+}
+#detail-offer .content .author-container img.flag {
+  width: 16px;
+  height: 16px;
+}
+#detail-offer .content .action {
+  align-items: center;
+  column-gap: 10px;
+  margin-top: 20px;
+}
+#detail-offer .content .action .asked {
+  color: var(--font-light-color);
+  text-decoration: underline;
+}
+#detail-offer .content .action .focus-button {
+  margin-top: 0;
+}
+#detail-offer .swiper {
+  width: 400px;
+  margin: 0;
+}
+#detail-offer .swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#detail-offer .swiper .swiper-slide img {
+  min-width: 100%;
+}
+
+/*# sourceMappingURL=detailOffer.css.map */
