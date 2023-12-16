@@ -15,7 +15,7 @@ from .models import Photo, Offer
 def index(request):
     return render(request, 'offers/index.html', context={'offers': Offer.objects.filter(status='active')})
 
-class CreateOffer(generic.CreateView, LoginRequiredMixin):
+class CreateOffer(LoginRequiredMixin, generic.CreateView):
     template_name = 'offers/add_offer.html'
     redirect_field_name = ''
     form_class = OfferForm
@@ -53,7 +53,7 @@ def respond_to_offer(request, pk):
     else:
         return HttpResponseNotAllowed(['POST'])
 
-class MyOffers(generic.ListView, LoginRequiredMixin):
+class MyOffers(LoginRequiredMixin, generic.ListView):
     model = Offer
     template_name = 'offers/my_offers.html'
     redirect_field_name = ''

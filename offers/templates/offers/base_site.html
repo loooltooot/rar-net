@@ -8,7 +8,9 @@
     <nav class="flex">
         <ul class="nav-links">
             <li><a href="{% url "offers:index" %}">Главная</a></li>
-            <li><a href="">Профиль</a></li>
+            <li><a href="{% url "offers:list_requests" %}">Мои отклики</a></li>
+            <li><a href="{% url "offers:myoffers" %}">Мои заявки</a></li>
+            <li><a href="{% url "offers:add_offer" %}">Добавить заявку</a></li>
         </ul>
     </nav>
     <img id="logo" src="{% static "offers/img/logo.png" %}" alt="rar-net">
