@@ -33,6 +33,7 @@ body > footer {
   --font-color: #000000;
   --font-light-color: #4d4d4d;
   --error-color: #d13434;
+  --error-light-color: #f86363;
   --selected-color: #60e23f;
   --selected-light-color: #86fc68;
 }
@@ -188,6 +189,14 @@ form .errorlist li {
   display: flex;
   font-weight: 700;
   color: var(--font-color);
+}
+
+.fancy-borders.not-selected-responder {
+  background: linear-gradient(180deg, var(--error-light-color) 0%, var(--error-color) 39.58%);
+  width: fit-content;
+  display: flex;
+  font-weight: 700;
+  color: var(--bg-color);
 }
 
 #offers-list {

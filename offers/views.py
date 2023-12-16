@@ -99,3 +99,9 @@ def reset_selected_responder(request):
             return redirect('offers:myoffers')
     else:
         return HttpResponseNotAllowed(['POST'])
+
+@login_required(redirect_field_name='')
+def list_user_requests(request):
+    user_requests = request.user.responders.all()
+
+    return render(request, 'offers/my_requests.html', context={'requests': user_requests})

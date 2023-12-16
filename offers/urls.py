@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (index, CreateOffer, 
     DetailOffer, respond_to_offer, MyOffers, 
-    set_selected_responder, reset_selected_responder
+    set_selected_responder, reset_selected_responder, list_user_requests
 )
 
 app_name = 'offers'
@@ -14,4 +14,5 @@ urlpatterns = [
     path('myoffers/', MyOffers.as_view(extra_context={'title': 'Мои заявки'}), name='myoffers'),
     path('myoffers/select/', set_selected_responder, name='select_responder'),
     path('myoffers/reset/', reset_selected_responder, name='reset_responder'),
+    path('myrequests/', list_user_requests, name='list_requests'),
 ]

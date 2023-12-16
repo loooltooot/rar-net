@@ -43,7 +43,7 @@
     {% if user.is_authenticated %}
     <div>
         <ul class="actions">
-            <li><a href="">Мои отклики</a></li>
+            <li><a href="{% url "offers:list_requests" %}">Мои отклики</a></li>
             <li><a href="{% url "offers:myoffers" %}">Мои заявки</a></li>
             <li><a href="{% url "offers:add_offer" %}">Добавить заявку</a></li>
         </ul>

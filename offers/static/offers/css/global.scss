@@ -18,6 +18,7 @@
     --font-color: #000000;
     --font-light-color: #4d4d4d;
     --error-color: #d13434;
+    --error-light-color: #f86363;
     --selected-color: #60e23f;
     --selected-light-color: #86fc68;
 }
@@ -200,6 +201,14 @@ form {
     display: flex;
     font-weight: 700;
     color: var(--font-color);
+}
+
+.fancy-borders.not-selected-responder {
+    @include fancy-bg(var(--error-light-color), var(--error-color));
+    width: fit-content;
+    display: flex;
+    font-weight: 700;
+    color: var(--bg-color);
 }
 
 #offers-list {
