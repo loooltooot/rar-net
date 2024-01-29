@@ -113,12 +113,12 @@ def search(request):
 
         initial_queryset = Offer.objects.filter(status='active')
         sorting_types = {
-            'everywhere': initial_queryset,
-            'same_country': initial_queryset.filter(author__country=request.user.country),
-            'same_city': initial_queryset.filter(author__city=request.user.city),
+            'everywhere': lambda: initial_queryset,
+            'same_country': lambda: initial_queryset.filter(author__country=request.user.country),
+            'same_city': lambda: initial_queryset.filter(author__city=request.user.city),
         }
 
-        sorted_offers = sorting_types.get(sort_type)
+        sorted_offers = sorting_types.get(sort_type)()
 
         if query is not None:
             sorted_offers = sorted_offers.filter(Q(title__icontains=query) | Q(description__icontains=query))
