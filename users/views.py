@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout, authenticate, login
 from django.views import generic
 from django.urls import reverse_lazy
+from offers.models import Offer
 
 from .forms import LoginForm, RegisterForm
 
@@ -22,7 +23,7 @@ def login_user(request):
                 login(request, user)
                 return redirect('offers:index')
             else:
-                return render(request, 'offers/index.html', {'error': 'Неправильный пароль или логин'})
+                return render(request, 'offers/index.html', {'error': 'Неправильный пароль или логин', 'offers': Offer.objects.filter(status='active')})
         
     return redirect('offers:index')
 
